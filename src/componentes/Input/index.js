@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { TextInput } from 'react-native-paper';
+import { TextInput, HelperText } from 'react-native-paper';
 import estilos from './estilos';
 
-export function Input({ label, value, onChangeText, secureTextEntry, error }) {
+export function Input({ label, value, onChangeText, secureTextEntry, error, messageErro }) {
   const [secureMode, setSecureMode] = useState(secureTextEntry);
 
   return (
+    <>
       <TextInput
         label={label}
         value={value}
@@ -23,5 +24,9 @@ export function Input({ label, value, onChangeText, secureTextEntry, error }) {
           /> : null
         }
       />
+      {error && <HelperText type="error" visible={error}>
+        {messageErro}
+      </HelperText>}
+    </>
   );
 }
